@@ -37,6 +37,8 @@ const PaymentGateway = () => {
       body: JSON.stringify({ items: cartItems }),
     });
     const session = await response.json();
+    console.log(session);
+    
     const result = await stripe.redirectToCheckout({ sessionId: session.id });
     if (result.error) {
       console.error(result.error);
