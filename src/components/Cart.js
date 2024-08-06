@@ -21,12 +21,12 @@
 // export default Cart;
 
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, List, ListItem, ListItemText, Button, IconButton, TextField, Box } from '@mui/material';
+import { Container, Typography, List, ListItem , Button, IconButton, TextField, Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-import { stripePromise } from './ProductDetails';
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -88,7 +88,7 @@ const Cart = ({ items, updateCart, removeFromCart }) => {
                   <TextField 
                     value={item.quantity} 
                     size="small" 
-                    sx={{ width: 40, mx: 1 }}
+                    sx={{ width: 60, mx: 1 }}
                     InputProps={{ readOnly: true }}
                   />
                   <IconButton onClick={() => handleQuantityChange(item.id, 1)} size="small">
