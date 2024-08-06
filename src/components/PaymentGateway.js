@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { stripePromise } from './ProductDetails';
 import { CreditCard as StripeIcon } from '@mui/icons-material';
 
-
+export const BACK_URL = `https://stripebackend-x9ii.onrender.com`
 
 const PaymentGateway = () => {
     const location = useLocation();
@@ -31,7 +31,7 @@ const PaymentGateway = () => {
 
   const handleStripePayment = async () => {
     const stripe = await stripePromise;
-    const response = await fetch('http://localhost:8080/create-checkout-session', {
+    const response = await fetch(`${BACK_URL}/create-checkout-session`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ items: cartItems }),
@@ -44,7 +44,7 @@ const PaymentGateway = () => {
   };
 
   const handleRazorpayPayment = async () => {
-    const res = await fetch('http://localhost:8080/create-razorpay-order', {
+    const res = await fetch(`${BACK_URL}/create-razorpay-order`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount: total }), // Razorpay expects amount in paise
@@ -60,7 +60,7 @@ const PaymentGateway = () => {
       order_id: order.id,
       handler: async (response) => {
         try {
-          const result = await fetch('http://localhost:8080/verify-payment', {
+          const result = await fetch(`${BACK_URL}/verify-payment`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

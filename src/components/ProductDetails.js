@@ -4,14 +4,16 @@ import { loadStripe } from '@stripe/stripe-js';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { BACK_URL } from './PaymentGateway';
 
 export const stripePromise = loadStripe("pk_test_51Op2jxSH07kZkgBpyO0TOpGjkZyaRF3FRv7G66aneTF8qqjR8GGIAq1tXHQBoaZ82qbgAYLLPBof0TIOhxJd1HeZ00IZXUnCjX");
+
 
 const ProductDetails = ({ product, onBack ,addToCart, addToFavorites }) => {
   const handleCheckout = async () => {
     const stripe = await stripePromise;
 
-    const response = await fetch('http://localhost:8080/create-payment-intent', {
+    const response = await fetch(`${BACK_URL}/create-payment-intent`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
